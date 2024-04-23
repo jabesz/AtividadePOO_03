@@ -30,25 +30,19 @@ public class App {
             System.out.print("Enter the price of the product: ");
             price = input.nextInt();
 
-            if (typeProduct == 'i') {
+            if (typeProduct == 'I') {
                 System.out.print("Customs fee: ");
                 customsFee = input.nextDouble();
                 products.add(new ImportedProduct(name, price, customsFee));
 
-            } else if (typeProduct == 'u') {
+            } else if (typeProduct == 'U') {
                 System.out.print("Manufacture date (DD/MM/YYYY): ");
                 String dateStr = input.next();
                 Date manufactureDate = sdf.parse(dateStr, new ParsePosition(0));
                 products.add(new UsedProduct(name, price, manufactureDate));
 
             } else {
-                products.add(new Product(name, price) {
-                    @Override
-                    public String priceTag() {
-                        return getName() + " $ " + String.format("%.2f", getPrice());
-                    }
-
-                });
+                products.add(new Product(name, price));
             }
         }
 
